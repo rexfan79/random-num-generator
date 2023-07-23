@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "random-num-generator"
+version = "0.1.0"
+description = ""
+authors = ["refan79 <refan9179@gmail.com>"]
+readme = "README.md"
+packages = [{include = "random_num_generator"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+numpy = "^1.25.1"
+matplotlib = "^3.7.2"
+ipykernel = "^6.24.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
