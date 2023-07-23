@@ -30,7 +30,7 @@ def pseudo_uniform(
     '''
     U = np.zeros(size)
 
-    for n in range(0, size):
+    for n in range(size):
         if n == 0:
             x = seed
         x = (x*mult+1)%mod
@@ -52,3 +52,12 @@ def pseudo_bernoulli(
         )
     bern = np.multiply(bern<=p, 1)
     return bern
+
+def pseudo_binomial(
+        n = 50,
+        p = .5,
+        size = 1,
+        ):
+    '''
+    generate binomial
+    '''
