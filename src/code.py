@@ -4,14 +4,14 @@ from matplotlib import pyplot as plt
 
 def num_plotter(
         list_of_a,
-        alpha=1,
+        alpha = 1,
         ):
     for a in list_of_a:
         plt.hist(
             a, 
-            bins=20,
-            alpha=alpha,
-            edgecolor='k',
+            bins = 20,
+            alpha = alpha,
+            edgecolor = 'k',
             )
     plt.show()
 
@@ -122,3 +122,49 @@ def pseudo_exponential(
     exp = -1*(1/lmbd)*(np.log(1-U))
 
     return exp
+
+def box_muller(
+        U1,
+        U2,
+        ):
+    '''
+    Box muller method
+    '''
+    a = 2*np.pi*U2
+    v = np.sqrt(
+        -2*np.log(U1)
+        )
+    return (
+        v*np.cos(a),
+        v*np.sin(a),
+    )
+
+
+def pseudo_normal(
+    mu = .0,
+    sigma = 1.0,
+    size = 1,
+    ):
+    '''
+    generate normal with Box-Muller transform
+    '''
+    seed1 = gene_seed()
+    U1 = pseudo_uniform(
+        seed = seed1,
+        size = size,
+        )
+
+    seed2 = gene_seed()
+    U2 = pseudo_uniform(
+        seed = seed2,
+        size = size,
+        )
+    
+    Z1, Z2 = box_muller(
+        U1, 
+        U2,
+        )
+    
+    norm = mu+Z1*sigma
+    
+    return norm
