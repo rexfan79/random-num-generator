@@ -2,12 +2,17 @@ import time
 import numpy as np
 from matplotlib import pyplot as plt 
 
-def num_plotter(a):
-    plt.hist(
-        a, 
-        bins=20, 
-        edgecolor='k',
-        )
+def num_plotter(
+        list_of_a,
+        alpha=1,
+        ):
+    for a in list_of_a:
+        plt.hist(
+            a, 
+            bins=20,
+            alpha=alpha,
+            edgecolor='k',
+            )
     plt.show()
 
 def gene_seed():
@@ -63,15 +68,42 @@ def pseudo_binomial(
     '''
     binom = np.array([])
 
-    for n in range(size):
+    for i in range(size):
         seed = gene_seed()
         U = pseudo_uniform(
             size = n,
             seed = seed,
             )
-        B = (U<=p).astype(int)
+        B = np.multiply(U<=p, 1)
         binom = np.append(
             binom,
             [np.sum(B)]
             )
     return binom
+
+def pseudo_poisson(
+        alpha,
+        size = 1,
+        ):
+    '''
+    generate poisson
+    '''
+    poisson = np.array([])
+
+    for i in range(size):
+        seed = gene_seed()
+        U = pseudo_uniform(
+            size = 5*alpha,
+            seed = seed,
+            )
+        Y, P, n = 0, 1, 0
+        while P >= np.exp(-1*alpha):
+            P = U[n]*P
+            Y = Y+1
+            n = n+1
+        poisson = np.append(
+            poisson,
+            [Y],
+            )
+    return poisson
+
