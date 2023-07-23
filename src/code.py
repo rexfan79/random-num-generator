@@ -43,5 +43,12 @@ def pseudo_bernoulli(
     size = 1,
     ):
     '''
-    
+    generate bernoulli
     '''
+    seed = gene_seed()
+    bern = pseudo_uniform(
+        seed = seed,
+        size = size,
+        )
+    bern = np.multiply(bern<=p, 1)
+    return bern
