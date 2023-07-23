@@ -61,3 +61,17 @@ def pseudo_binomial(
     '''
     generate binomial
     '''
+    binom = np.array([])
+
+    for n in range(size):
+        seed = gene_seed()
+        U = pseudo_uniform(
+            size = n,
+            seed = seed,
+            )
+        B = (U<=p).astype(int)
+        binom = np.append(
+            binom,
+            [np.sum(B)]
+            )
+    return binom
