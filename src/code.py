@@ -1,3 +1,4 @@
+import time
 import numpy as np
 from matplotlib import pyplot as plt 
 
@@ -9,8 +10,16 @@ def num_plotter(a):
         )
     plt.show()
 
+def gene_seed():
+    '''
+    generate seed from current time
+    '''
+    t = time.perf_counter()
+    seed = int(str(t).split('.')[1])
+    return seed
 
-def gene_uniform(
+
+def pseudo_uniform(
     mult = 16807,
     mod = (2**31)-1,
     seed = 1234,
@@ -28,3 +37,11 @@ def gene_uniform(
         U[n] = x/mod
     
     return U
+
+def pseudo_bernoulli(
+    p = .5,
+    size = 1,
+    ):
+    '''
+    
+    '''
