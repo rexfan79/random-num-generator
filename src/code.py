@@ -107,3 +107,18 @@ def pseudo_poisson(
             )
     return poisson
 
+def pseudo_exponential(
+    lmbd,
+    size = 1,
+    ):
+    '''
+    generate exponential
+    '''
+    seed = gene_seed()
+    U = pseudo_uniform(
+        seed = seed,
+        size = size,
+        )
+    exp = -1*(1/lmbd)*(np.log(1-U))
+
+    return exp
